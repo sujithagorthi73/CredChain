@@ -1,0 +1,19 @@
+{
+  "name": "credchain-monad-registry",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:monad-testnet": "hardhat run scripts/deploy.cjs --network monadTestnet"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "^3.1.0",
+    "chai": "^5.2.1",
+    "ethers": "^6.15.0",
+    "hardhat": "^2.26.3"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.7"
+  }
+}

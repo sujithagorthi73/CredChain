@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  STUDENT
+  ISSUER
+  ADMIN
+}
+
+enum CertificateStatus {
+  DRAFT
+  SUBMITTED
+  APPROVING
+  APPROVED
+  REJECTED
+  REVOKED
+}
+
+model User {
+  id                  String        @id @default(cuid())
+  email               String        @unique
+  passwordHash        String
+  fullName            String
+  role                UserRole      @default(STUDENT)
+  institutionName     String?
+  certificates        Certificate[] @relation("StudentCertificates")
+  reviewedCertificates Certificate[] @relation("IssuerCertificates")
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+
+  @@index([role])
+}
+
+model Certificate {
+  id                   String            @id @default(cuid())
+  publicId             String            @unique
+  studentId            String
+  student              User              @relation("StudentCertificates", fields: [studentId], references: [id], onDelete: Cascade)
+  issuerUserId         String?
+  issuer               User?             @relation("IssuerCertificates", fields: [issuerUserId], references: [id], onDelete: SetNull)
+  originalFileName     String
+  storagePath          String
+  mimeType             String
+  extractedData        Json?
+  reviewedData         Json?
+  extractionStatus     String            @default("PENDING")
+  extractionMessage    String?
+  status               CertificateStatus @default(DRAFT)
+  decisionReason       String?
+  submittedAt          DateTime?
+  approvedAt           DateTime?
+  rejectedAt           DateTime?
+  revokedAt            DateTime?
+  blockchainTxHash     String?
+  blockchainHash       String?
+  blockchainChainId    Int?
+  createdAt            DateTime          @default(now())
+  updatedAt            DateTime          @updatedAt
+
+  @@index([studentId, createdAt])
+  @@index([status, submittedAt])
+  @@index([issuerUserId])
+}

@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Build files
+dist/
+
+# Blockchain generated files
+blockchain/artifacts/
+blockchain/cache/
+
+# Uploaded certificates
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Logs
+*.log

@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap');
+
+:root {
+  font-family: 'DM Sans', 'Avenir Next', Avenir, sans-serif;
+  color: #1c3029;
+  background: #fcfcf8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --paper: #fcfcf8;
+  --ink: #1c3029;
+  --muted: #75817a;
+  --line: #e3e8e1;
+  --teal: #226753;
+  --teal-dark: #194d3f;
+  --mint: #e8f1e9;
+  --lime: #c1dc77;
+  --coral: #c96f5d;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; min-height: 100vh; }
+body, button, input { font-family: 'DM Sans', 'Avenir Next', Avenir, sans-serif; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid #226753; outline-offset: 3px; }
+#root { min-height: 100vh; }
+main { overflow: hidden; }
+h1, h2, h3, p { margin-top: 0; }
